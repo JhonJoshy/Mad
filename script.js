@@ -29,3 +29,5 @@ function actualizarPantalla() {
         }
     }
 }
+
+//Que rollo con el pollo
