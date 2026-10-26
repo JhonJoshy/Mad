@@ -1,40 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mad!!!</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0714;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
+  <canvas id="canvas" width="600" height="600"></canvas>
 
-    <div id="pantalla-inicio">
-        
-        <h1 class="titulo-cumple">¿𝓠𝓾é 𝓭í𝓪 𝓮𝓼 𝓱𝓸𝔂?</h1>
-    
-        <div id="display-fecha">
-            <span class="digito">_</span>
-            <span class="digito">_</span>
-            <span class="separador">/</span>
-            <span class="digito">_</span>
-            <span class="digito">_</span>
-        </div>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2 + 20;
 
-        <div class="teclado">
-            <button class="btn-num" onclick="agregarNumero(1)">1</button>
-            <button class="btn-num" onclick="agregarNumero(2)">2</button>
-            <button class="btn-num" onclick="agregarNumero(3)">3</button>
-            <button class="btn-num" onclick="agregarNumero(4)">4</button>
-            <button class="btn-num" onclick="agregarNumero(5)">5</button>
-            <button class="btn-num" onclick="agregarNumero(6)">6</button>
-            <button class="btn-num" onclick="agregarNumero(7)">7</button>
-            <button class="btn-num" onclick="agregarNumero(8)">8</button>
-            <button class="btn-num" onclick="agregarNumero(9)">9</button>
-            <button class="btn-num zero" onclick="agregarNumero(0)">0</button>
-        </div>
+    function heartX(t, scale = 12) { return cx + scale * 16 * Math.pow(Math.sin(t), 3); }
+    function heartY(t, scale = 12) { return cy - scale * (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)); }
 
-    </div>
+    let i = 0;
+    const totalPoints = 200;
 
-    <script src="script.js"></script>
+    ctx.strokeStyle = "#ff4d6d";
+    ctx.fillStyle = "#ff4d6d";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(heartX(0), heartY(0));
+
+    function drawHeart() {
+      if (i <= totalPoints) {
+        let t = (2 * Math.PI / totalPoints) * i;
+        let x = heartX(t);
+        let y = heartY(t);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        i++;
+        setTimeout(drawHeart, 15);
+      } else {
+        ctx.fill(); // Rellena el corazón de rojo al terminar la silueta
+      }
+    }
+
+    drawHeart();
+  </script>
 </body>
 </html>
